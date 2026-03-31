@@ -1,0 +1,54 @@
+<svg width="1200" height="620" viewBox="0 0 1200 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="620" rx="36" fill="#FCF7EF"/>
+  <rect x="40" y="40" width="1120" height="540" rx="28" fill="#FFFDF8" stroke="#ECE1D4"/>
+  <text x="76" y="110" fill="#171412" font-family="Avenir Next, Arial, sans-serif" font-size="42" font-weight="700">Synthetic Attention Fidelity</text>
+  <text x="76" y="146" fill="#625B54" font-family="Avenir Next, Arial, sans-serif" font-size="20">Measured with `benchmarks/synthetic_distortion.py` on a fixed random seed. Lower is better.</text>
+
+  <line x1="124" y1="458" x2="1086" y2="458" stroke="#D8CEC0" stroke-width="2"/>
+  <line x1="124" y1="370" x2="1086" y2="370" stroke="#EFE5D8" stroke-width="2"/>
+  <line x1="124" y1="282" x2="1086" y2="282" stroke="#EFE5D8" stroke-width="2"/>
+  <line x1="124" y1="194" x2="1086" y2="194" stroke="#EFE5D8" stroke-width="2"/>
+  <line x1="124" y1="106" x2="1086" y2="106" stroke="#EFE5D8" stroke-width="2"/>
+
+  <line x1="124" y1="106" x2="124" y2="458" stroke="#BEB2A2" stroke-width="2"/>
+  <line x1="124" y1="458" x2="1086" y2="458" stroke="#BEB2A2" stroke-width="2"/>
+
+  <text x="82" y="462" fill="#625B54" font-family="Menlo, monospace" font-size="16">0.00</text>
+  <text x="82" y="374" fill="#625B54" font-family="Menlo, monospace" font-size="16">0.04</text>
+  <text x="82" y="286" fill="#625B54" font-family="Menlo, monospace" font-size="16">0.08</text>
+  <text x="82" y="198" fill="#625B54" font-family="Menlo, monospace" font-size="16">0.12</text>
+  <text x="82" y="110" fill="#625B54" font-family="Menlo, monospace" font-size="16">0.16</text>
+
+  <text x="176" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">2b</text>
+  <text x="352" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">3b</text>
+  <text x="528" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">4b</text>
+  <text x="704" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">5b</text>
+  <text x="880" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">6b</text>
+  <text x="1050" y="494" fill="#625B54" font-family="Menlo, monospace" font-size="16">8b</text>
+
+  <path d="M184 180L360 350L536 395L712 428L888 440L1064 451" stroke="#DB563B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184 105L360 282L536 379L712 419L888 427L1064 454" stroke="#2D5CFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="184" cy="180" r="8" fill="#DB563B"/>
+  <circle cx="360" cy="350" r="8" fill="#DB563B"/>
+  <circle cx="536" cy="395" r="8" fill="#DB563B"/>
+  <circle cx="712" cy="428" r="8" fill="#DB563B"/>
+  <circle cx="888" cy="440" r="8" fill="#DB563B"/>
+  <circle cx="1064" cy="451" r="8" fill="#DB563B"/>
+
+  <circle cx="184" cy="105" r="8" fill="#2D5CFF"/>
+  <circle cx="360" cy="282" r="8" fill="#2D5CFF"/>
+  <circle cx="536" cy="379" r="8" fill="#2D5CFF"/>
+  <circle cx="712" cy="419" r="8" fill="#2D5CFF"/>
+  <circle cx="888" cy="427" r="8" fill="#2D5CFF"/>
+  <circle cx="1064" cy="454" r="8" fill="#2D5CFF"/>
+
+  <rect x="766" y="120" width="286" height="104" rx="18" fill="#171412"/>
+  <circle cx="804" cy="156" r="8" fill="#DB563B"/>
+  <text x="826" y="162" fill="#FFF8EF" font-family="Avenir Next, Arial, sans-serif" font-size="22">TurboQuant output RMSE</text>
+  <circle cx="804" cy="196" r="8" fill="#2D5CFF"/>
+  <text x="826" y="202" fill="#D8CFC3" font-family="Avenir Next, Arial, sans-serif" font-size="22">Uniform baseline RMSE</text>
+
+  <rect x="86" y="518" width="1028" height="34" rx="17" fill="#F6EFE3"/>
+  <text x="112" y="541" fill="#625B54" font-family="Avenir Next, Arial, sans-serif" font-size="18">Takeaway: TurboQuant is clearly stronger in the low and mid-bit regime where KV-cache compression matters most.</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="680" rx="36" fill="#F3EEE5"/>
+  <rect x="24" y="24" width="1152" height="632" rx="28" fill="#FFF9F1" stroke="#E7DDD0"/>
+  <circle cx="145" cy="108" r="10" fill="#DB563B"/>
+  <circle cx="181" cy="108" r="10" fill="#F0B647"/>
+  <circle cx="217" cy="108" r="10" fill="#2D5CFF"/>
+  <text x="72" y="176" fill="#171412" font-family="Avenir Next, Arial, sans-serif" font-size="56" font-weight="700">TurboQuant for KV-Cache</text>
+  <text x="72" y="218" fill="#5A534C" font-family="Avenir Next, Arial, sans-serif" font-size="24">A clean reference path from rotated sphere coordinates to quantized attention memory.</text>
+
+  <rect x="72" y="286" width="220" height="208" rx="22" fill="#171412"/>
+  <text x="100" y="334" fill="#FFF8EF" font-family="Menlo, monospace" font-size="22">Raw KV Vector</text>
+  <text x="100" y="376" fill="#C9BFB2" font-family="Menlo, monospace" font-size="18">B x H x T x D</text>
+  <text x="100" y="418" fill="#C9BFB2" font-family="Menlo, monospace" font-size="18">norm + direction</text>
+  <path d="M108 456C132 430 161 404 188 404C219 404 239 438 259 438" stroke="#DB563B" stroke-width="10" stroke-linecap="round"/>
+  <path d="M108 474C132 448 161 422 188 422C219 422 239 456 259 456" stroke="#F0B647" stroke-width="10" stroke-linecap="round"/>
+
+  <rect x="352" y="286" width="220" height="208" rx="22" fill="#FFF4E4" stroke="#E9D0A3" stroke-width="2"/>
+  <text x="383" y="334" fill="#171412" font-family="Menlo, monospace" font-size="22">Random Rotation</text>
+  <text x="383" y="376" fill="#6A6259" font-family="Menlo, monospace" font-size="18">Haar orthogonal</text>
+  <text x="383" y="418" fill="#6A6259" font-family="Menlo, monospace" font-size="18">spreads energy evenly</text>
+  <circle cx="462" cy="454" r="44" fill="#FFF9F1" stroke="#DB563B" stroke-width="8"/>
+  <path d="M462 410V498" stroke="#DB563B" stroke-width="4"/>
+  <path d="M418 454H506" stroke="#DB563B" stroke-width="4"/>
+  <path d="M433 425L492 484" stroke="#2D5CFF" stroke-width="6" stroke-linecap="round"/>
+
+  <rect x="632" y="286" width="220" height="208" rx="22" fill="#F9F7FF" stroke="#D4DAFF" stroke-width="2"/>
+  <text x="662" y="334" fill="#171412" font-family="Menlo, monospace" font-size="22">Lloyd-Max Codes</text>
+  <text x="662" y="376" fill="#6A6259" font-family="Menlo, monospace" font-size="18">sphere-aware scalar bins</text>
+  <text x="662" y="418" fill="#6A6259" font-family="Menlo, monospace" font-size="18">optimize MSE per coord</text>
+  <rect x="674" y="438" width="20" height="40" rx="10" fill="#DB563B"/>
+  <rect x="708" y="424" width="20" height="54" rx="10" fill="#DB563B"/>
+  <rect x="742" y="404" width="20" height="74" rx="10" fill="#F0B647"/>
+  <rect x="776" y="424" width="20" height="54" rx="10" fill="#2D5CFF"/>
+
+  <rect x="912" y="286" width="216" height="208" rx="22" fill="#EFF8F1" stroke="#C8E2CF" stroke-width="2"/>
+  <text x="943" y="334" fill="#171412" font-family="Menlo, monospace" font-size="22">Quantized Cache</text>
+  <text x="943" y="376" fill="#6A6259" font-family="Menlo, monospace" font-size="18">indices + norm</text>
+  <text x="943" y="418" fill="#6A6259" font-family="Menlo, monospace" font-size="18">optional 1-bit residual sketch</text>
+  <rect x="954" y="440" width="132" height="18" rx="9" fill="#171412"/>
+  <rect x="954" y="468" width="92" height="18" rx="9" fill="#DB563B"/>
+  <rect x="1054" y="468" width="32" height="18" rx="9" fill="#2D5CFF"/>
+
+  <path d="M292 390H352" stroke="#171412" stroke-width="5" stroke-linecap="round"/>
+  <path d="M572 390H632" stroke="#171412" stroke-width="5" stroke-linecap="round"/>
+  <path d="M852 390H912" stroke="#171412" stroke-width="5" stroke-linecap="round"/>
+  <path d="M336 380L352 390L336 400" stroke="#171412" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M616 380L632 390L616 400" stroke="#171412" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M896 380L912 390L896 400" stroke="#171412" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="72" y="544" width="1056" height="76" rx="20" fill="#171412"/>
+  <text x="104" y="590" fill="#FFF8EF" font-family="Avenir Next, Arial, sans-serif" font-size="28" font-weight="600">Repository focus:</text>
+  <text x="332" y="590" fill="#D6CCC1" font-family="Avenir Next, Arial, sans-serif" font-size="28">faithful reference implementation, reproducible benchmarks, and a clean path to future runtime integration.</text>
+</svg>
