@@ -1,14 +1,20 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
+
+import torch
+
+from turboquant_kvcache import TurboQuantKVCacheCodec
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 ASSETS = ROOT / "assets"
+PYPROJECT = ROOT / "pyproject.toml"
 
 
 def build_report() -> None:
@@ -30,7 +36,38 @@ def copy_assets() -> None:
             shutil.copy2(path, dest / path.name)
 
 
+def read_version() -> str:
+    match = re.search(r'^version = "([^"]+)"', PYPROJECT.read_text(encoding="utf-8"), flags=re.MULTILINE)
+    if match is None:
+        raise ValueError("could not parse version from pyproject.toml")
+    return match.group(1)
+
+
+def build_benchmark_rows() -> str:
+    torch.manual_seed(0)
+    device = torch.device("cpu")
+    shape = (1, 4, 64, 64)
+    key = torch.randn(shape, device=device, dtype=torch.float32)
+    value = torch.randn(shape, device=device, dtype=torch.float32)
+    query = torch.randn((1, 4, 1, 64), device=device, dtype=torch.float32)
+    rows = []
+    for bits in (2.0, 3.0, 4.0, 5.0, 6.0, 8.0):
+        codec = TurboQuantKVCacheCodec(64, bits=bits, seed=0, device=device)
+        metrics = codec.evaluate(query, key, value)
+        rows.append(
+            "<tr>"
+            f"<td>{bits:.1f}</td>"
+            f"<td>{metrics['compression_ratio']:.2f}x</td>"
+            f"<td>{metrics['attention_output_rmse']:.6f}</td>"
+            f"<td>{metrics['uniform_output_rmse']:.6f}</td>"
+            "</tr>"
+        )
+    return "\n".join(rows)
+
+
 def build_index() -> None:
+    version = read_version()
+    benchmark_rows = build_benchmark_rows()
     html = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,6 +169,44 @@ def build_index() -> None:
       display: block;
       border-top: 1px solid var(--line);
     }
+    table {
+      width: calc(100% - 28px);
+      margin: 0 14px 18px;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(23, 20, 18, 0.08);
+      text-align: left;
+    }
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .release {
+      margin-top: 20px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .release strong {
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+    .release a {
+      text-decoration: none;
+      color: white;
+      background: var(--ink);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
     .preview {
       padding: 14px;
       background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,239,227,0.88));
@@ -186,6 +261,19 @@ def build_index() -> None:
           </ul>
         </div>
         <img class="visual" src="./assets/benchmark-lowbit.svg" alt="Benchmark low-bit chart" />
+        <table>
+          <thead>
+            <tr>
+              <th>Bits</th>
+              <th>Compression</th>
+              <th>TurboQuant RMSE</th>
+              <th>Uniform RMSE</th>
+            </tr>
+          </thead>
+          <tbody>
+            __BENCHMARK_ROWS__
+          </tbody>
+        </table>
       </article>
 
       <article class="card">
@@ -199,6 +287,13 @@ def build_index() -> None:
         <div class="preview">
           <img src="./assets/report-preview.png" alt="TurboQuant visual report preview" />
         </div>
+        <div class="release">
+          <div>
+            <div style="color: var(--muted); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px;">Current release</div>
+            <strong>v__VERSION__</strong>
+          </div>
+          <a href="https://github.com/2023Anita/turboquant-kvcache/releases/tag/v__VERSION__">Open release</a>
+        </div>
       </article>
     </section>
 
@@ -209,6 +304,8 @@ def build_index() -> None:
 </body>
 </html>
 """
+    html = html.replace("__BENCHMARK_ROWS__", benchmark_rows)
+    html = html.replace("__VERSION__", version)
     (SITE / "index.html").write_text(html, encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
 

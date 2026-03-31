@@ -104,6 +104,13 @@ GitHub Pages deployment target:
 
 - <https://2023anita.github.io/turboquant-kvcache/>
 
+Run the minimal Hugging Face example:
+
+```bash
+python3 -m pip install -e .[hf]
+PYTHONPATH=src python3 examples/transformers_generate.py --model-id Qwen/Qwen2.5-0.5B-Instruct --device cpu
+```
+
 ## Snapshot Numbers
 
 One representative synthetic run with `seq_len=64`, `heads=4`, `head_dim=64`, `batch=1`:
@@ -176,6 +183,7 @@ If `make` is unavailable, the commands are listed in [CONTRIBUTING.md](CONTRIBUT
 - [Benchmarks](docs/benchmarks.md)
 - [Reproducibility](docs/reproducibility.md)
 - [Transformers Integration](docs/transformers.md)
+- [GitHub Pages](docs/pages.md)
 - [Changelog](CHANGELOG.md)
 
 ## Roadmap

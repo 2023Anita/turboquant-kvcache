@@ -1,6 +1,6 @@
 PYTHONPATH=src
 
-.PHONY: install test demo report benchmark pages
+.PHONY: install test demo report benchmark pages hf-example
 
 install:
 	python3 -m pip install -e .[dev]
@@ -19,3 +19,6 @@ benchmark:
 
 pages:
 	PYTHONPATH=$(PYTHONPATH) python3 scripts/build_pages.py
+
+hf-example:
+	PYTHONPATH=$(PYTHONPATH) python3 examples/transformers_generate.py --model-id TinyLlama/TinyLlama-1.1B-Chat-v1.0
