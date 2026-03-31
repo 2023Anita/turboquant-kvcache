@@ -1,6 +1,6 @@
 PYTHONPATH=src
 
-.PHONY: install test demo report benchmark
+.PHONY: install test demo report benchmark pages
 
 install:
 	python3 -m pip install -e .[dev]
@@ -16,3 +16,6 @@ report:
 
 benchmark:
 	PYTHONPATH=$(PYTHONPATH) python3 benchmarks/synthetic_distortion.py
+
+pages:
+	PYTHONPATH=$(PYTHONPATH) python3 scripts/build_pages.py

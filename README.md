@@ -4,6 +4,7 @@
   <p><strong>A faithful, reproducible, and extensible reference implementation of TurboQuant for KV-cache quantization.</strong></p>
   <p>
     <a href="https://github.com/2023Anita/turboquant-kvcache/actions/workflows/ci.yml"><img src="https://github.com/2023Anita/turboquant-kvcache/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+    <a href="https://2023anita.github.io/turboquant-kvcache/"><img src="https://img.shields.io/badge/pages-online-2D5CFF.svg" alt="GitHub Pages" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-171412.svg" alt="MIT License" /></a>
     <a href="https://arxiv.org/html/2504.19874v1"><img src="https://img.shields.io/badge/paper-arXiv%202504.19874-DB563B.svg" alt="Paper" /></a>
     <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9%2B-2D5CFF.svg" alt="Python 3.9+" /></a>
@@ -99,6 +100,10 @@ Preview of the generated local report:
   <img src="assets/report-preview.png" alt="TurboQuant report preview" width="82%" />
 </div>
 
+GitHub Pages deployment target:
+
+- <https://2023anita.github.io/turboquant-kvcache/>
+
 ## Snapshot Numbers
 
 One representative synthetic run with `seq_len=64`, `heads=4`, `head_dim=64`, `batch=1`:
@@ -137,6 +142,21 @@ key_hat, value_hat = codec.decode(pack)
 metrics = codec.evaluate(query, key_cache, value_cache)
 ```
 
+## Transformers Hook
+
+The repository now includes a minimal Hugging Face custom-loop integration:
+
+```python
+from turboquant_kvcache import TurboQuantTransformersRunner
+
+runner = TurboQuantTransformersRunner.from_model_config(model.config, bits=4.0, seed=0, device=model.device)
+outputs, state = runner.step(model, inputs, state=None)
+```
+
+This helper stores `past_key_values` in TurboQuant form between decoding steps and restores them right before the next forward pass.
+Install `transformers` separately when you want to use it with a real Hugging Face model.
+See [Transformers Integration](docs/transformers.md) for details.
+
 ## Development
 
 Run the local workflow:
@@ -155,6 +175,7 @@ If `make` is unavailable, the commands are listed in [CONTRIBUTING.md](CONTRIBUT
 - [Method Notes](docs/method.md)
 - [Benchmarks](docs/benchmarks.md)
 - [Reproducibility](docs/reproducibility.md)
+- [Transformers Integration](docs/transformers.md)
 - [Changelog](CHANGELOG.md)
 
 ## Roadmap
