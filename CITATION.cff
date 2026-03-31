@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "TurboQuant KV-Cache"
+message: "If you use this repository, please cite both this software and the original TurboQuant paper."
+type: software
+authors:
+  - family-names: "2023"
+    given-names: "Anita"
+repository-code: "https://github.com/2023Anita/turboquant-kvcache"
+url: "https://github.com/2023Anita/turboquant-kvcache"
+license: "MIT"
+version: "0.1.0"
+date-released: "2026-03-31"
+abstract: >-
+  A faithful, reproducible, and extensible reference implementation of TurboQuant
+  for KV-cache quantization, including MSE and inner-product paths, synthetic
+  benchmarks, and a self-contained HTML visual report.
+preferred-citation:
+  type: article
+  title: "TurboQuant: An Efficient and Accurate KV Cache Quantization Method"
+  url: "https://arxiv.org/html/2504.19874v1"

@@ -93,6 +93,12 @@ Generate the self-contained visual report:
 PYTHONPATH=src python3 demos/visual_report.py
 ```
 
+Preview of the generated local report:
+
+<div align="center">
+  <img src="assets/report-preview.png" alt="TurboQuant report preview" width="82%" />
+</div>
+
 ## Snapshot Numbers
 
 One representative synthetic run with `seq_len=64`, `heads=4`, `head_dim=64`, `batch=1`:
@@ -165,4 +171,4 @@ Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and kee
 
 ## Citation
 
-If you use this repository, please cite the original TurboQuant paper.
+If you use this repository, please cite the original TurboQuant paper. GitHub-compatible citation metadata is available in [CITATION.cff](CITATION.cff).
